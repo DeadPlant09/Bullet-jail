@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj14rgikpn08q"]
+
+[ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="1_6iwtw"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5fenx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
+size = Vector2(130, 51)
+
+[node name="car (normal)" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.078431375, 0.60784316, 1, 1)
+offset_right = 130.0
+offset_bottom = 51.0
+texture = SubResource("CanvasTexture_5fenx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(65, 25.5)
+shape = SubResource("RectangleShape2D_6iwtw")
+debug_color = Color(0.99999994, 0.015339439, 0.028954113, 0.41960785)
+
+[node name="move_component" type="Node2D" parent="." node_paths=PackedStringArray("moving")]
+position = Vector2(65, 25.5)
+script = ExtResource("1_6iwtw")
+velocity = Vector2(-220, 0)
+moving = NodePath("..")
+metadata/_custom_type_script = "uid://dimbc2frc2j7"

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bql3k7fohk0v5"]
+
+[ext_resource type="Script" uid="uid://dan1sthwwwqg7" path="res://Scripts/hanbox.gd" id="1_qyy4q"]
+[ext_resource type="Script" uid="uid://bpf5oakep45ci" path="res://Scripts/caller.gd" id="2_m2qvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip6n6"]
+size = Vector2(40, 40)
+
+[node name="Hanbox (player)" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_qyy4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ip6n6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5458928, 0.29264498, 4.813075e-07, 1)
+
+[node name="hitbox" type="Area2D" parent="." node_paths=PackedStringArray("node")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_m2qvs")
+node = NodePath("..")
+responce = "Got_Hit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_ip6n6")
+
+[connection signal="area_entered" from="hitbox" to="hitbox" method="when_bullet_hit"]
