@@ -4,28 +4,40 @@ extends Control
 @export var start_game: bool
 
 # variables
-@onready var start: Button = $VBoxContainer/start
-@onready var retry: Button = $VBoxContainer/retry
-@onready var quit: Button = $VBoxContainer/quit
+@onready var label: Label = $VBoxContainer/Label
+@onready var start_button: Button = $VBoxContainer/start
+@onready var retry_button: Button = $VBoxContainer/retry
+@onready var quit_button: Button = $VBoxContainer/quit
 
 # functons
 func _ready() -> void:
-	Global.game_runing = start_game
-	if Global.game_runing: hide()
 	
-	start.button_up.connect(Start_Game)
-	retry.button_up.connect(Restart)
-	quit.button_up.connect(Quit)
+	if not Global.game_runing: Global.game_runing = start_game
+	else: hide()
+	
+	retry_button.hide()
+	
+	start_button.button_up.connect(start)
+	retry_button.button_up.connect(restart)
+	quit_button.button_up.connect(quit)
+	
+	Global.Game_Over.connect(try_again)
 
 
-func Start_Game():
+func start():
 	Global.game_runing = true
 	hide()
 
-func Restart():
-	Global.Save()
+func restart():
+	Global.game_runing = true # so it start up automaticlly
 	get_tree().reload_current_scene()
 
-func Quit():
-	Global.Save()
+func quit():
 	get_tree().quit()
+
+
+func try_again():
+	label.text = "GAME OVER"
+	start_button.hide()
+	retry_button.show()
+	show()

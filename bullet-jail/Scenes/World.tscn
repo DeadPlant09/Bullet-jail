@@ -15,15 +15,6 @@ script = ExtResource("1_gjpho")
 
 [node name="UI" type="Node" parent="."]
 
-[node name="Start Menu" parent="UI" instance=ExtResource("1_j0p05")]
-z_index = 3
-start_game = false
-metadata/_edit_use_anchors_ = true
-
-[node name="spawner_component" type="Node" parent="UI"]
-script = ExtResource("3_p70al")
-metadata/_custom_type_script = "uid://ciyyb65f016pr"
-
 [node name="marker" type="Marker2D" parent="UI"]
 position = Vector2(780, 100)
 
@@ -33,56 +24,102 @@ position = Vector2(780, 290)
 [node name="marker3" type="Marker2D" parent="UI"]
 position = Vector2(780, 500)
 
+[node name="marker4" type="Marker2D" parent="UI"]
+position = Vector2(585, 615)
+
+[node name="marker5" type="Marker2D" parent="UI"]
+position = Vector2(357, 615)
+
+[node name="marker6" type="Marker2D" parent="UI"]
+position = Vector2(108, 615)
+
+[node name="Start Menu" parent="UI" instance=ExtResource("1_j0p05")]
+z_index = 3
+start_game = false
+metadata/_edit_use_anchors_ = true
+
+[node name="spawner_component" type="Node" parent="UI"]
+script = ExtResource("3_p70al")
+metadata/_custom_type_script = "uid://ciyyb65f016pr"
+
 [node name="spawn timer" type="Timer" parent="UI"]
 wait_time = 3.0
 autostart = true
 
+[node name="Health Label" type="Label" parent="UI"]
+visible = false
+z_index = 3
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 144.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.039215688, 0.9372549, 0.039215688, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Health: 0"
+
+[node name="Score Label" type="Label" parent="UI"]
+visible = false
+z_index = 3
+offset_left = 336.0
+offset_top = -10.0
+offset_right = 391.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 96
+text = "0"
+
 [node name="Hanbox (player)" parent="." instance=ExtResource("1_5cjrv")]
 position = Vector2(539, 376)
 
-[node name="building" type="StaticBody2D" parent="."]
+[node name="Colisions" type="Node" parent="."]
+
+[node name="building" type="StaticBody2D" parent="Colisions"]
 collision_mask = 0
 
-[node name="TextureRect" type="TextureRect" parent="building"]
+[node name="TextureRect" type="TextureRect" parent="Colisions/building"]
 offset_left = 1.0
 offset_top = -89.0
 offset_right = 729.0
 offset_bottom = 62.0
 texture = SubResource("CanvasTexture_5cjrv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="building"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisions/building"]
 position = Vector2(369, -25)
 shape = SubResource("RectangleShape2D_5cjrv")
 
-[node name="building2" type="StaticBody2D" parent="."]
+[node name="building2" type="StaticBody2D" parent="Colisions"]
 position = Vector2(0, 620)
 collision_mask = 0
 
-[node name="TextureRect" type="TextureRect" parent="building2"]
+[node name="TextureRect" type="TextureRect" parent="Colisions/building2"]
 offset_left = 1.0
 offset_top = -52.0
 offset_right = 729.0
 offset_bottom = 48.0
 texture = SubResource("CanvasTexture_5cjrv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="building2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisions/building2"]
 position = Vector2(360, 8)
 shape = SubResource("RectangleShape2D_5cjrv")
 
-[node name="off screen collison" type="StaticBody2D" parent="."]
+[node name="off screen collison" type="StaticBody2D" parent="Colisions"]
 position = Vector2(-46, 620)
-rotation = 4.712389
+rotation = -1.5707964
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="off screen collison"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisions/off screen collison"]
 position = Vector2(360, 6.999996)
 shape = SubResource("RectangleShape2D_5cjrv")
 
-[node name="off screen collison2" type="StaticBody2D" parent="."]
+[node name="off screen collison2" type="StaticBody2D" parent="Colisions"]
 position = Vector2(732, 620)
-rotation = 4.712389
+rotation = -1.5707964
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="off screen collison2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisions/off screen collison2"]
 position = Vector2(363, 27)
 shape = SubResource("RectangleShape2D_5cjrv")

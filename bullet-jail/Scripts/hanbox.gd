@@ -4,14 +4,13 @@ extends CharacterBody2D
 @export var debug:bool
 
 # variables
-var alive = true
+var HP:int
 var speed = 300
 
 func _ready() -> void:
 	Start()
 
 func _process(_delta: float) -> void:
-	#print(alive)
 	 
 	if not Global.game_runing: return
 	
@@ -24,10 +23,9 @@ func _process(_delta: float) -> void:
 
 func Start():
 	$ColorRect.color = Color.SADDLE_BROWN
-	alive = true
+	HP = 3
 
 
 func Got_Hit(): # you died
 	$ColorRect.color = Color.WHITE
-	alive = false
-	Global.game_runing = false
+	Global.Game_Over.emit()

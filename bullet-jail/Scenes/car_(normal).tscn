@@ -11,22 +11,29 @@ size = Vector2(130, 51)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.078431375, 0.60784316, 1, 1)
-offset_right = 130.0
-offset_bottom = 51.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -25.5
+offset_right = 65.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("CanvasTexture_5fenx")
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(65, 25.5)
 shape = SubResource("RectangleShape2D_6iwtw")
 debug_color = Color(0.99999994, 0.015339439, 0.028954113, 0.41960785)
 
 [node name="move_component" type="Node2D" parent="." node_paths=PackedStringArray("moving")]
-position = Vector2(65, 25.5)
 script = ExtResource("1_6iwtw")
-velocity = Vector2(-220, 0)
 moving = NodePath("..")
 metadata/_custom_type_script = "uid://dimbc2frc2j7"
