@@ -11,5 +11,5 @@ class_name move_component
 # functons
 
 func _process(delta: float) -> void:
-	moving.position += velocity * delta
+	moving.global_position += velocity * delta
 	if debug: print(moving.position)

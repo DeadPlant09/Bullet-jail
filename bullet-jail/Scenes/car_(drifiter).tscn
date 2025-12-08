@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://br34afaoo7pyr"]
+
+[ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="2_h0j7l"]
+[ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="2_mrvly"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5fenx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
+size = Vector2(130, 51)
+
+[node name="car (drifter)" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.8772926, 0.4666822, 3.85046e-07, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -25.5
+offset_right = 65.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_5fenx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6iwtw")
+debug_color = Color(0.99999994, 0.015339439, 0.028954113, 0.41960785)
+
+[node name="move_component" type="Node2D" parent="." node_paths=PackedStringArray("moving")]
+script = ExtResource("2_h0j7l")
+moving = NodePath("..")
+metadata/_custom_type_script = "uid://dimbc2frc2j7"
+
+[node name="off_screen_remover" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-66, -25, 132, 51)
+script = ExtResource("2_mrvly")
+metadata/_custom_type_script = "uid://bs2jt5a0qqae7"

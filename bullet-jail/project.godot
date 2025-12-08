@@ -23,6 +23,12 @@ Global="*res://Scripts/global.gd"
 
 window/size/viewport_width=720
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Hazard"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

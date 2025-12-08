@@ -11,6 +11,7 @@ extends Control
 
 # functons
 func _ready() -> void:
+	start_button.grab_focus()
 	
 	if not Global.game_runing: Global.game_runing = start_game
 	else: hide()
@@ -41,3 +42,4 @@ func try_again():
 	start_button.hide()
 	retry_button.show()
 	show()
+	retry_button.grab_focus()
