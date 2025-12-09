@@ -22,6 +22,7 @@ Global="*res://Scripts/global.gd"
 [display]
 
 window/size/viewport_width=720
+window/size/resizable=false
 
 [layer_names]
 

@@ -10,12 +10,17 @@ extends Node2D
 @onready var spawn_timer: Timer = $"UI/spawn timer"
 @onready var health_label: Label = $"UI/Health Label"
 @onready var score_label: Label = $"UI/Score Label"
+@onready var hanbox: CharacterBody2D = $"Hanbox (player)"
 
 
 # functions
 func _ready() -> void:
-	spawn_timer.timeout.connect(spawn_random_bullet)
+	health_label.text = "HP: " + str(hanbox.hp)
+	
 	Global.Collected_Money.connect(update_score)
+	hanbox.update_health_bar.connect(Update_Health_Bar)
+	spawn_timer.timeout.connect(spawn_random_bullet)
+	
 
 func spawn_random_bullet():
 	if not Global.game_runing or not start_spawn: return
@@ -41,6 +46,9 @@ func Spawn_normal_car():
 		instance.rotation_degrees = 90.0 
 		instance_move_component.velocity = Vector2(0, -290)
 
+func Update_Health_Bar(health:int):
+	print("HP: " + str(health))
+	health_label.text = "HP: " + str(health)
 
 func update_score():
 	score_label.text = str(Global.money)

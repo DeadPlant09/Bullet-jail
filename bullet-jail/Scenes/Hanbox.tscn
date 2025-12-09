@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://bql3k7fohk0v5"]
+[gd_scene load_steps=7 format=3 uid="uid://bql3k7fohk0v5"]
 
 [ext_resource type="Script" uid="uid://dan1sthwwwqg7" path="res://Scripts/hanbox.gd" id="1_qyy4q"]
 [ext_resource type="Script" uid="uid://bpf5oakep45ci" path="res://Scripts/caller.gd" id="2_m2qvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip6n6"]
 size = Vector2(40, 40)
+
+[sub_resource type="Animation" id="Animation_m2qvs"]
+resource_name = "blinking"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.46666667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_4qcd0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2tys"]
+_data = {
+&"RESET": SubResource("Animation_4qcd0"),
+&"blinking": SubResource("Animation_m2qvs")
+}
 
 [node name="Hanbox (player)" type="CharacterBody2D"]
 z_index = 1
@@ -39,5 +76,14 @@ responce = "Got_Hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_ip6n6")
+
+[node name="Invincablity Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Invincablity Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t2tys")
+}
 
 [connection signal="area_entered" from="hitbox" to="hitbox" method="when_bullet_hit"]
