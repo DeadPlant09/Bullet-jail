@@ -17,11 +17,15 @@ var drop_position = randi_range(100, 600)
 
 # function
 func _process(delta):
-	
 	if drop_chance > drop_range or droped: return
 	
-	var can_drop_horizontal = move_node.velocity.x < 0 and global_position.x <= drop_position
-	var can_drop_vertical = move_node.velocity.y < 0 and global_position.y <= drop_position
+	var can_drop_right = move_node.velocity.x > 0 and global_position.x >= drop_position
+	var can_drop_left =  move_node.velocity.x < 0 and global_position.x <= drop_position
+	var can_drop_up = move_node.velocity.y < 0 and global_position.y <= drop_position
+	var can_drop_down = move_node.velocity.y > 0 and global_position.y >= drop_position
+	
+	var can_drop_horizontal = can_drop_right or can_drop_left
+	var can_drop_vertical = can_drop_up or can_drop_down
 	
 	if can_drop_horizontal:
 		Drop()

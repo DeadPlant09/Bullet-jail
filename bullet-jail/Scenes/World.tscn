@@ -56,8 +56,7 @@ script = ExtResource("3_p70al")
 metadata/_custom_type_script = "uid://ciyyb65f016pr"
 
 [node name="spawn timer" type="Timer" parent="UI"]
-wait_time = 3.0
-autostart = true
+wait_time = 1.5
 
 [node name="Health Label" type="Label" parent="UI"]
 z_index = 3

@@ -17,17 +17,28 @@ extends Node2D
 func _ready() -> void:
 	health_label.text = "HP: " + str(hanbox.hp)
 	
-	Global.Collected_Money.connect(update_score)
-	hanbox.update_health_bar.connect(Update_Health_Bar)
-	spawn_timer.timeout.connect(spawn_random_bullet)
+	var spawn_time = 1.5  / (0.5 - (Global.money * 0.01)) # decreces as money grows
 	
+	spawn_timer.start(spawn_time)
+	
+	Global.Collected_Money.connect(Update_score)
+	hanbox.update_health_bar.connect(Update_Health_Bar)
+	spawn_timer.timeout.connect(Spawn_Random_Bullet)
 
-func spawn_random_bullet():
+
+func Spawn_Random_Bullet():
 	if not Global.game_runing or not start_spawn: return
-	Spawn_normal_car()
+	var Bullet_number = randi_range(1,6)
+	
+	if Bullet_number == 1:
+		Spawn_Normal_Car()
+		
+	elif Bullet_number >= 2 and Global.money >= 10: Spawn_Drifiter_Car()
+		
+	else: Spawn_Normal_Car() # if all else fails
 
 
-func Spawn_normal_car():
+func Spawn_Normal_Car():
 	var marker = randi_range(1, 6)
 	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
 	 
@@ -46,11 +57,33 @@ func Spawn_normal_car():
 		instance.rotation_degrees = 90.0 
 		instance_move_component.velocity = Vector2(0, -290)
 
+func Spawn_Drifiter_Car():
+	var marker = randi_range(7, 12)
+	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
+	 
+	#print(ui.get_child(marker_index).name)
+	
+	spawner.scene = load("res://Scenes/car_(drifiter).tscn")
+	
+	spawner.Spawn(ui.get_child(marker_index).position)
+	
+	var instance = spawner.instance
+	var instance_move_component = instance.get_child(2)
+	
+	instance_move_component.velocity = Vector2(350, 0)
+	
+	if Global.in_range(marker_index, 10, 11):
+		instance.rotation_degrees = 90.0 
+		instance_move_component.velocity = Vector2(0, 320)
+	
+	instance.Chose_Directon() # to change direction AFTER you have movementn
+
+
 func Update_Health_Bar(health:int):
 	print("HP: " + str(health))
 	health_label.text = "HP: " + str(health)
 
-func update_score():
+func Update_score():
 	score_label.text = str(Global.money)
 	
 	if Global.high_score >= Global.money: return

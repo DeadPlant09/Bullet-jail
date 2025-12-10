@@ -13,9 +13,9 @@ const max_hp = 3
 var hp:int:
 	set(value):
 		hp = value
-		print("hp change")
 		emit_signal("update_health_bar", hp)
 var speed = 300
+var unlocked_dash = false
 
 func _ready() -> void:
 	Start()
@@ -37,7 +37,6 @@ func Start():
 
 func Got_Hit():
 	
-	var dead = hp == 0
 	var invincablity_on = not invincablity_timer.is_stopped()
 	
 	if invincablity_on: return
@@ -46,6 +45,7 @@ func Got_Hit():
 	invincablity_timer.start(0.7)
 	invincablity_animation.play("blinking")
 	
+	var dead = hp == 0
 	
 	if not dead: return
 	
