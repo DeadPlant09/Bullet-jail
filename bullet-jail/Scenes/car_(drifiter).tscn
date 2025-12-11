@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://dimbc2frc2j7"
 
 [node name="Drop_Chance" type="Node2D" parent="." node_paths=PackedStringArray("spawner", "move_node")]
 script = ExtResource("2_h546d")
-drop_range = 35
+drop_range = 33
 spawner = NodePath("../spawner_component 3")
 move_node = NodePath("../move_component")
 metadata/_custom_type_script = "uid://dqo444xi3x2v3"

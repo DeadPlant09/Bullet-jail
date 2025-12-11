@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3ehlu8tnq41k"]
+
+[ext_resource type="Script" uid="uid://wk6xbk7d4eg0" path="res://Scripts/Shooter.gd" id="1_p13cv"]
+[ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="2_r1sb6"]
+[ext_resource type="Script" uid="uid://dqo444xi3x2v3" path="res://Scripts/drop_chance.gd" id="3_8k31y"]
+[ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="4_rgdxa"]
+[ext_resource type="PackedScene" uid="uid://c1asj8pk3logm" path="res://Scenes/ten_dollar.tscn" id="5_r1sb6"]
+[ext_resource type="PackedScene" uid="uid://bvujgrlrsggpr" path="res://Scenes/bullet.tscn" id="6_p13cv"]
+[ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="6_xwjcy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5fenx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
+size = Vector2(130, 51)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_504my"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p13cv"]
+
+[node name="car (shooter)" type="Node2D"]
+z_index = 2
+script = ExtResource("1_p13cv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.83453745, 0, 0.07149053, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -25.5
+offset_right = 65.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_5fenx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6iwtw")
+debug_color = Color(0.99999994, 0.015339439, 0.028954113, 0.41960785)
+
+[node name="move_component" type="Node2D" parent="." node_paths=PackedStringArray("moving")]
+script = ExtResource("2_r1sb6")
+moving = NodePath("..")
+metadata/_custom_type_script = "uid://dimbc2frc2j7"
+
+[node name="Drop_Chance" type="Node2D" parent="." node_paths=PackedStringArray("spawner", "move_node")]
+script = ExtResource("3_8k31y")
+drop_range = 25
+spawner = NodePath("../spawner_component 2")
+move_node = NodePath("../move_component")
+metadata/_custom_type_script = "uid://dqo444xi3x2v3"
+
+[node name="spawner_component 2" type="Node" parent="."]
+script = ExtResource("4_rgdxa")
+scene = ExtResource("5_r1sb6")
+metadata/_custom_type_script = "uid://ciyyb65f016pr"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-65, -26, 131, 52)
+script = ExtResource("6_xwjcy")
+
+[node name="gun" type="Node2D" parent="."]
+
+[node name="bullet marker" type="Marker2D" parent="gun"]
+position = Vector2(12, -76)
+
+[node name="TextureRect" type="TextureRect" parent="gun"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -23.0
+offset_top = -52.0
+offset_right = 27.0
+offset_bottom = -24.0
+texture = SubResource("CanvasTexture_504my")
+
+[node name="TextureRect2" type="TextureRect" parent="gun"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -2.0
+offset_top = -79.0
+offset_right = 27.0
+offset_bottom = -29.0
+texture = SubResource("CanvasTexture_p13cv")
+
+[node name="bullet timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="bullet spawner" type="Node" parent="."]
+script = ExtResource("4_rgdxa")
+scene = ExtResource("6_p13cv")
+metadata/_custom_type_script = "uid://ciyyb65f016pr"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="VisibleOnScreenNotifier2D" method="_on_screen_exited"]

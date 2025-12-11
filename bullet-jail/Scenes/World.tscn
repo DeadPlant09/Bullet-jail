@@ -32,19 +32,22 @@ position = Vector2(352, 718)
 position = Vector2(110, 718)
 
 [node name="marker7" type="Marker2D" parent="UI"]
-position = Vector2(-35, 47)
+position = Vector2(-61, 47)
 
 [node name="marker8" type="Marker2D" parent="UI"]
-position = Vector2(-35, 237)
+position = Vector2(-61, 237)
 
 [node name="marker9" type="Marker2D" parent="UI"]
-position = Vector2(-35, 447)
+position = Vector2(-61, 447)
 
 [node name="marker10" type="Marker2D" parent="UI"]
-position = Vector2(483, -42)
+position = Vector2(501, -42)
 
 [node name="marker11" type="Marker2D" parent="UI"]
 position = Vector2(196, -34)
+
+[node name="marker12" type="Marker2D" parent="UI"]
+position = Vector2(-63, 591)
 
 [node name="Start Menu" parent="UI" instance=ExtResource("1_j0p05")]
 z_index = 3

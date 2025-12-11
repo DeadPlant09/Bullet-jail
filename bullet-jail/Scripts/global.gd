@@ -11,10 +11,14 @@ var money:int:
 	set(value):
 		money = value
 		Collected_Money.emit()
-		if money == 30: Unlock_Dash.emit()
+		if money >= 30 and not unlocked_dash:
+			Unlock_Dash.emit()
+			unlocked_dash = true
 var high_score:int
+var unlocked_dash
 
 func _ready() -> void:
+	money = 19
 	Game_Over.connect(game_over)
 
 func in_range(variable:int, greater_than:int, less_than:int)  -> bool:
