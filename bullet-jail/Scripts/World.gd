@@ -7,7 +7,12 @@ extends Node2D
 @onready var ui: Node = $UI
 @onready var start_menu: Control = $"UI/Start Menu"
 @onready var spawner: spawner_component = $UI/spawner_component
-@onready var spawn_timer: Timer = $"UI/spawn timer"
+@onready var car_timer: Timer = $"UI/car timer"
+@onready var drifter_timer: Timer = $"UI/drifter timer"
+@onready var shooter_timer: Timer = $"UI/shooter timer"
+@onready var lazer_timer: Timer = $"UI/lazer timer"
+@onready var bomb_timer: Timer = $"UI/bomb timer"
+@onready var cage_timer: Timer = $"UI/cage timer"
 @onready var health_label: Label = $"UI/Health Label"
 @onready var score_label: Label = $"UI/Score Label"
 @onready var hanbox: CharacterBody2D = $"Hanbox (player)"
@@ -17,28 +22,43 @@ extends Node2D
 func _ready() -> void:
 	health_label.text = "HP: " + str(hanbox.hp)
 	
-	var spawn_time = 1.5  / (0.5 - (Global.money * 0.01)) # decreces as money grows
+	car_timer.start(1.5  / (0.5 - (Global.money * 0.01))) # decreces as money grows
+	Global.Collected_Money.connect(Update_Spawning)
 	
-	spawn_timer.start(spawn_time)
-	
-	Global.Collected_Money.connect(Update_score)
+	# UI updates
+	Global.Collected_Money.connect(Update_Score)
 	hanbox.update_health_bar.connect(Update_Health_Bar)
-	spawn_timer.timeout.connect(Spawn_Random_Bullet)
-
-
-func Spawn_Random_Bullet():
-	if not Global.game_runing or not start_spawn: return
-	var Bullet_number = randi_range(1,6)
 	
-	if Bullet_number == 1:
-		Spawn_Normal_Car()
-		
-	elif Bullet_number >= 2 and Global.money >= 10: Spawn_Drifiter_Car()
-		
-	else: Spawn_Normal_Car() # if all else fails
+	# Hazard Spawn
+	car_timer.timeout.connect(Spawn_Normal_Car)
+	drifter_timer.timeout.connect(Spawn_Drifiter_Car)
+	shooter_timer.timeout.connect(Spawn_Shooter_Car)
 
+
+func Update_Health_Bar(health:int):
+	print("HP: " + str(health))
+	health_label.text = "HP: " + str(health)
+
+func Update_Score():
+	score_label.text = str(Global.money)
+	
+	if Global.high_score >= Global.money: return
+	
+	score_label.text = str(Global.money) + " HIGH SCORE!!!"
+	score_label.modulate = Color.YELLOW
+
+
+func Update_Spawning():
+	if Global.money >= 101: return
+	elif Global.money >= 10: drifter_timer.start(2.0  / (0.5 - (Global.money * 0.01)))
+	elif Global.money >= 20: shooter_timer.start(2.5  / (0.5 - (Global.money * 0.01)))
+	elif Global.money >= 30: lazer_timer.start(5.0  / (0.5 - (Global.money * 0.01)))
+	elif Global.money >= 55: bomb_timer.start(3.5  / (0.5 - (Global.money * 0.01)))
+	elif Global.money >= 100: cage_timer.start(4.0  / (0.5 - (Global.money * 0.01)))
 
 func Spawn_Normal_Car():
+	if not start_spawn: return
+	
 	var marker = randi_range(1, 6)
 	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
 	 
@@ -58,10 +78,10 @@ func Spawn_Normal_Car():
 		instance_move_component.velocity = Vector2(0, -290)
 
 func Spawn_Drifiter_Car():
+	if not start_spawn: return
+	
 	var marker = randi_range(7, 12)
 	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
-	 
-	#print(ui.get_child(marker_index).name)
 	
 	spawner.scene = load("res://Scenes/car_(drifiter).tscn")
 	
@@ -78,15 +98,4 @@ func Spawn_Drifiter_Car():
 	
 	instance.Chose_Directon() # to change direction AFTER you have movementn
 
-
-func Update_Health_Bar(health:int):
-	print("HP: " + str(health))
-	health_label.text = "HP: " + str(health)
-
-func Update_score():
-	score_label.text = str(Global.money)
-	
-	if Global.high_score >= Global.money: return
-	
-	score_label.text = str(Global.money) + "HIGH SCORE!!!"
-	score_label.modulate = Color.YELLOW
+func Spawn_Shooter_Car(): pass

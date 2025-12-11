@@ -14,12 +14,10 @@ func Chose_Directon() -> void:
 	var turn_up_or_right = random_dir == 2
 	
 	if moving_right:
-		print("moving_right")
 		if turn_down_or_left: turnner.rotation_degrees = 90.0 
 		elif turn_up_or_right: turnner.rotation_degrees = -90.0 
 	
 	elif moving_down:
-		print("moving_down")
 		if turn_down_or_left: turnner.rotation_degrees = 90.0
 		elif turn_up_or_right: turnner.rotation_degrees = -90.0
 	

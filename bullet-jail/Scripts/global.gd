@@ -15,7 +15,6 @@ var money:int:
 var high_score:int
 
 func _ready() -> void:
-	money = 10 
 	Game_Over.connect(game_over)
 
 func in_range(variable:int, greater_than:int, less_than:int)  -> bool:

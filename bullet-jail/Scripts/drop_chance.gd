@@ -35,6 +35,5 @@ func _process(delta):
 
 
 func Drop():
-	print("spawn")
 	spawner.Spawn(global_position)
 	droped = true

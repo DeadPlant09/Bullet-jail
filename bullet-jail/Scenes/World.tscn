@@ -55,8 +55,23 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("3_p70al")
 metadata/_custom_type_script = "uid://ciyyb65f016pr"
 
-[node name="spawn timer" type="Timer" parent="UI"]
+[node name="car timer" type="Timer" parent="UI"]
 wait_time = 1.5
+
+[node name="drifter timer" type="Timer" parent="UI"]
+wait_time = 2.0
+
+[node name="shooter timer" type="Timer" parent="UI"]
+wait_time = 2.5
+
+[node name="bomb timer" type="Timer" parent="UI"]
+wait_time = 3.5
+
+[node name="cage timer" type="Timer" parent="UI"]
+wait_time = 4.0
+
+[node name="lazer timer" type="Timer" parent="UI"]
+wait_time = 5.0
 
 [node name="Health Label" type="Label" parent="UI"]
 z_index = 3
@@ -83,7 +98,7 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Hanbox (player)" parent="." instance=ExtResource("1_5cjrv")]
-position = Vector2(539, 376)
+position = Vector2(352, 363)
 
 [node name="Colisions" type="Node" parent="."]
 

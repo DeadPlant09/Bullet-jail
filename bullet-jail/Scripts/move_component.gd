@@ -6,7 +6,6 @@ class_name move_component
 @export var velocity: Vector2:
 	set(value):
 		velocity = value
-		print("value")
 @export var moving:Node2D
 
 # variables
