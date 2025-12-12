@@ -13,9 +13,10 @@ const max_hp = 3
 var hp:int:
 	set(value):
 		hp = value
+		print(hp)
 		emit_signal("update_health_bar", hp)
 var speed = 300
-var unlocked_dash = false
+var dashed = false
 
 func _ready() -> void:
 	Start()
@@ -33,6 +34,32 @@ func _process(_delta: float) -> void:
 func Start():
 	$ColorRect.color = Color.SADDLE_BROWN
 	hp = max_hp 
+
+
+func _input(_event: InputEvent) -> void:
+	var dash_button_pressed = Input.is_action_just_pressed("ui_accept") 
+	var is_moving = not velocity == Vector2.ZERO
+	if dash_button_pressed and Global.unlocked_dash and is_moving:
+		Dash()
+
+
+func Dash():
+	if dashed: return
+	
+	speed *= 2.2
+	invincablity_timer.start(0.25)
+	invincablity_animation.play("Dash")
+	dashed = true
+	
+	await invincablity_timer.timeout
+	
+	invincablity_animation.play("RESET")
+	speed = 300
+	
+	var dash_cooldown = get_tree().create_timer(0.35).timeout
+	await dash_cooldown
+	
+	dashed = false
 
 
 func Got_Hit():

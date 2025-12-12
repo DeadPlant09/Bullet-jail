@@ -15,6 +15,7 @@ extends Node2D
 @onready var cage_timer: Timer = $"UI/cage timer"
 @onready var health_label: Label = $"UI/Health Label"
 @onready var score_label: Label = $"UI/Score Label"
+@onready var dash_label: Label = $"UI/Dash label"
 @onready var hanbox: CharacterBody2D = $"Hanbox (player)"
 
 
@@ -23,7 +24,7 @@ func _ready() -> void:
 	health_label.text = "HP: " + str(hanbox.hp)
 	
 	# start timers
-	car_timer.start(1.5  / (0.5 - (Global.money * 0.01))) # decreces as money grows
+	car_timer.start(1.0  / (0.5 - (Global.money * 0.01))) # decreces as money grows
 	drifter_timer.start(2.0  / (0.5 - (Global.money * 0.01)))
 	shooter_timer.start(2.5  / (0.5 - (Global.money * 0.01)))
 	
@@ -36,7 +37,6 @@ func _ready() -> void:
 	car_timer.timeout.connect(Spawn_Normal_Car)
 	drifter_timer.timeout.connect(Spawn_Drifiter_Car)
 	shooter_timer.timeout.connect(Spawn_Shooter_Car)
-	
 
 
 func Update_Health_Bar(health:int):
@@ -60,6 +60,19 @@ func Update_Spawning():
 
 func Get_Dash():
 	start_spawn = false
+	spawner.scene = load("res://Scenes/dash_juice.tscn")
+	spawner.call_deferred("Spawn", Vector2(320, 360)) # to add a node after money is deleted (not at the same time)
+	
+	await Global.Unlocked_Dash
+	
+	dash_label.show()
+	Global.unlocked_dash = true
+	start_spawn = true
+
+func _input(_event: InputEvent) -> void:
+	if not dash_label.visible: return
+	var dash_button_pressed = Input.is_action_just_pressed("ui_accept") 
+	if dash_button_pressed: dash_label.hide()
 
 func Spawn_Normal_Car():
 	if not start_spawn or not Global.game_runing: return
@@ -121,6 +134,6 @@ func Spawn_Shooter_Car():
 	
 	instance_move_component.velocity = Vector2(-330, 0)
 	
-	if marker_index == 8: instance_move_component.velocity = Vector2(350, 0)
+	if marker_index == 12: instance_move_component.velocity = Vector2(350, 0)
 	
 	instance.Cheak_Direction()

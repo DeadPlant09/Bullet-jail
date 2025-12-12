@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct4m8tpfkjv6y"]
+
+[ext_resource type="Script" uid="uid://bns4g0fomrfkm" path="res://Scripts/dash_juice.gd" id="1_2qkki"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nw231"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nw231"]
+radius = 11.0
+height = 36.0
+
+[node name="Dash Juice" type="Node2D"]
+script = ExtResource("1_2qkki")
+
+[node name="sprite" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureRect" type="TextureRect" parent="sprite"]
+modulate = Color(1, 0.6117647, 0.1882353, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_nw231")
+
+[node name="TextureRect3" type="TextureRect" parent="sprite"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -4.0
+offset_right = 11.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_nw231")
+
+[node name="TextureRect2" type="TextureRect" parent="sprite"]
+modulate = Color(1, 0.6114651, 0.18942156, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -20.0
+offset_right = 16.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_nw231")
+
+[node name="TextureRect4" type="TextureRect" parent="sprite"]
+modulate = Color(0.1428582, 0.14285824, 0.1428582, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -25.0
+offset_right = 9.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_nw231")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_nw231")

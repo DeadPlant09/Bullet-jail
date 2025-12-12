@@ -59,7 +59,6 @@ script = ExtResource("3_p70al")
 metadata/_custom_type_script = "uid://ciyyb65f016pr"
 
 [node name="car timer" type="Timer" parent="UI"]
-wait_time = 1.5
 
 [node name="drifter timer" type="Timer" parent="UI"]
 wait_time = 2.0
@@ -99,6 +98,16 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 48
 text = "0"
+
+[node name="Dash label" type="Label" parent="UI"]
+visible = false
+offset_left = 44.0
+offset_top = 552.0
+offset_right = 663.0
+offset_bottom = 597.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "Press [Space] to DASH through enemies."
 
 [node name="Hanbox (player)" parent="." instance=ExtResource("1_5cjrv")]
 position = Vector2(352, 363)

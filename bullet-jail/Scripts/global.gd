@@ -4,9 +4,10 @@ extends Node
 signal Game_Over
 signal Collected_Money
 signal Unlock_Dash
+signal Unlocked_Dash
 
 # variables
-var game_runing:bool = false
+var game_runing:bool = true
 var money:int: 
 	set(value):
 		money = value
@@ -18,7 +19,7 @@ var high_score:int
 var unlocked_dash
 
 func _ready() -> void:
-	money = 19
+	money = 29
 	Game_Over.connect(game_over)
 
 func in_range(variable:int, greater_than:int, less_than:int)  -> bool:

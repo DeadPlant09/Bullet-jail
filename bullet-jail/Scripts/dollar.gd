@@ -8,6 +8,6 @@ class_name Dollar
 func _ready() -> void:
 	amount_label.text = str(amount)
 
-func Dollar_Collected(body: Node2D):
+func Dollar_Collected(_body: Node2D):
 	Global.money += amount
 	queue_free()
