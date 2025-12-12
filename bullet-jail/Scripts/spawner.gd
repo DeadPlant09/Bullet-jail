@@ -12,7 +12,7 @@ var instance
 func Spawn(position:Vector2, parent: Node2D = get_tree().current_scene):
 	# custom error will be emit if ttheres only the default packedscene resource 
 	assert(scene is PackedScene, get_parent().name + ": no assigned scene")
-	print("spawn")
+	
 	# instance scene
 	instance = scene.instantiate()
 	

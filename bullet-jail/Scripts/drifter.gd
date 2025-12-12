@@ -21,7 +21,7 @@ func Chose_Directon() -> void:
 		if turn_down_or_left: turnner.rotation_degrees = 90.0
 		elif turn_up_or_right: turnner.rotation_degrees = -90.0
 	
-	await get_tree().create_timer(randf_range(0.3,1.3)).timeout
+	await get_tree().create_timer(randf_range(0.5,1.5)).timeout
 	
 	Turn_to_direction(moving_right, moving_down)
 

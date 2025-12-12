@@ -38,7 +38,8 @@ func Start():
 
 func _input(_event: InputEvent) -> void:
 	var dash_button_pressed = Input.is_action_just_pressed("ui_accept") 
-	var is_moving = not velocity == Vector2.ZERO
+	var is_moving = not velocity == Vector2.ZERO and not hp == 0
+	
 	if dash_button_pressed and Global.unlocked_dash and is_moving:
 		Dash()
 

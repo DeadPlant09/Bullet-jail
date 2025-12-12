@@ -25,8 +25,9 @@ func _ready() -> void:
 	
 	# start timers
 	car_timer.start(1.0  / (0.5 - (Global.money * 0.01))) # decreces as money grows
-	drifter_timer.start(2.0  / (0.5 - (Global.money * 0.01)))
-	shooter_timer.start(2.5  / (0.5 - (Global.money * 0.01)))
+	drifter_timer.start(1.5  / (0.5 - (Global.money * 0.01)))
+	shooter_timer.start(2.0  / (0.5 - (Global.money * 0.01)))
+	lazer_timer.start(4.0  / (0.5 - (Global.money * 0.01)))
 	
 	# UI updates
 	Global.Collected_Money.connect(Update_Score)
@@ -37,6 +38,7 @@ func _ready() -> void:
 	car_timer.timeout.connect(Spawn_Normal_Car)
 	drifter_timer.timeout.connect(Spawn_Drifiter_Car)
 	shooter_timer.timeout.connect(Spawn_Shooter_Car)
+	lazer_timer.timeout.connect(Spawn_Lazer)
 
 
 func Update_Health_Bar(health:int):
@@ -54,7 +56,6 @@ func Update_Score():
 
 func Update_Spawning():
 	if Global.money >= 101: return
-	elif Global.money >= 30: lazer_timer.start(5.0  / (0.5 - (Global.money * 0.01)))
 	elif Global.money >= 55: bomb_timer.start(3.5  / (0.5 - (Global.money * 0.01)))
 	elif Global.money >= 100: cage_timer.start(4.0  / (0.5 - (Global.money * 0.01)))
 
@@ -137,3 +138,26 @@ func Spawn_Shooter_Car():
 	if marker_index == 12: instance_move_component.velocity = Vector2(350, 0)
 	
 	instance.Cheak_Direction()
+
+func Spawn_Lazer():
+	if not start_spawn or not Global.game_runing: return
+	if not Global.money >= 30: return
+	
+	var spawn_markers = [2,13]
+	var marker = spawn_markers.pick_random()
+	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
+	 
+	print(ui.get_child(marker_index).name)
+	
+	spawner.scene = load("res://Scenes/lazer.tscn")
+	
+	spawner.Spawn(ui.get_child(marker_index).position)
+	
+	var instance = spawner.instance
+	var instance_move_component = instance.get_child(2)
+	
+	instance_move_component.velocity = Vector2(0, 400)
+	
+	if marker_index == 1:
+		instance.rotation_degrees = 90.0 
+		instance_move_component.velocity = Vector2(-400, 0)

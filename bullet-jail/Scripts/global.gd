@@ -7,14 +7,13 @@ signal Unlock_Dash
 signal Unlocked_Dash
 
 # variables
-var game_runing:bool = true
+var game_runing:bool = false
 var money:int: 
 	set(value):
 		money = value
 		Collected_Money.emit()
 		if money >= 30 and not unlocked_dash:
 			Unlock_Dash.emit()
-			unlocked_dash = true
 var high_score:int
 var unlocked_dash
 
@@ -38,4 +37,6 @@ func game_over():
 	Save()
 
 func Save():
-	print("save")
+	high_score = money
+	money = 0
+	# insert save to cfg file
