@@ -75,89 +75,75 @@ func _input(_event: InputEvent) -> void:
 	var dash_button_pressed = Input.is_action_just_pressed("ui_accept") 
 	if dash_button_pressed: dash_label.hide()
 
-func Spawn_Normal_Car():
-	if not start_spawn or not Global.game_runing: return
-	
-	var marker = randi_range(1, 6)
+func Spawn_Hazard(enemy_scene: PackedScene, marker: int):
 	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
 	 
 	#print(ui.get_child(marker_index).name)
 	
-	spawner.scene = load("res://Scenes/car_(normal).tscn")
-	
+	spawner.scene = enemy_scene
 	spawner.Spawn(ui.get_child(marker_index).position)
 	
+	return marker_index
+
+func Move_Hazard(speed1 = Vector2(0,0), speed2 = Vector2(0,0), rotation_condion = false, degrees = 90.0):
 	var instance = spawner.instance
-	var instance_move_component = instance.get_child(2)
+	var instance_move_component = instance.get_child(2) # move component
 	
-	instance_move_component.velocity = Vector2(-320, 0)
+	instance_move_component.velocity = speed1
 	
-	if Global.in_range(marker_index, 3, 5):
-		instance.rotation_degrees = 90.0 
-		instance_move_component.velocity = Vector2(0, -290)
+	if rotation_condion:
+		instance.rotation_degrees = degrees
+		instance_move_component.velocity = speed2
+
+
+func Spawn_Normal_Car():
+	if not start_spawn or not Global.game_runing: return
+	
+	var speed_1 = Vector2(-320, 0)
+	var speed_2 = Vector2(0, -320)
+	var rand_marker = randi_range(1, 6)
+	var spawn_index = Spawn_Hazard(load("res://Scenes/car_(normal).tscn"), rand_marker)
+	
+	Move_Hazard(speed_1, speed_2, Global.in_range(spawn_index, 3, 5))
+
 
 func Spawn_Drifiter_Car():
 	if not start_spawn or not Global.game_runing: return
 	if not Global.money >= 10: return
 	
-	var marker = randi_range(7, 12)
-	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
+	var speed_1 = Vector2(350, 0)
+	var speed_2 = Vector2(0, 320)
+	var rand_marker = randi_range(7, 12)
+	var spawn_index = Spawn_Hazard(load("res://Scenes/car_(drifiter).tscn"), rand_marker)
 	
-	spawner.scene = load("res://Scenes/car_(drifiter).tscn")
+	Move_Hazard(speed_1, speed_2, Global.in_range(spawn_index, 10, 11))
 	
-	spawner.Spawn(ui.get_child(marker_index).position)
+	var hazard = spawner.instance
 	
-	var instance = spawner.instance
-	var instance_move_component = instance.get_child(2)
-	
-	instance_move_component.velocity = Vector2(350, 0)
-	
-	if Global.in_range(marker_index, 10, 11):
-		instance.rotation_degrees = 90.0 
-		instance_move_component.velocity = Vector2(0, 320)
-	
-	instance.Chose_Directon() # to change direction AFTER you have movement
+	hazard.Chose_Directon() # to change direction AFTER you have movement
 
 func Spawn_Shooter_Car():
 	if not start_spawn or not Global.game_runing: return
 	if not Global.money >= 20: return
 	
-	var spawn_markers = [1,13]
-	var marker = spawn_markers.pick_random()
-	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
+	var speed_1 = Vector2(-330, 0)
+	var speed_2 = Vector2(350, 0)
+	var rand_marker = [1,12].pick_random()
 	
-	spawner.scene = load("res://Scenes/car_(shooter).tscn")
+	Spawn_Hazard(load("res://Scenes/car_(shooter).tscn"), rand_marker)
+	Move_Hazard(speed_1, speed_2, rand_marker == 12)
 	
-	spawner.Spawn(ui.get_child(marker_index).position)
+	var hazard = spawner.instance
 	
-	var instance = spawner.instance
-	var instance_move_component = instance.get_child(2)
-	
-	instance_move_component.velocity = Vector2(-330, 0)
-	
-	if marker_index == 12: instance_move_component.velocity = Vector2(350, 0)
-	
-	instance.Cheak_Direction()
+	hazard.Cheak_Direction()
 
 func Spawn_Lazer():
 	if not start_spawn or not Global.game_runing: return
 	if not Global.money >= 30: return
 	
-	var spawn_markers = [2,13]
-	var marker = spawn_markers.pick_random()
-	var marker_index = marker - 1 # the first index in godot is 0  which makes all the index one less the amunount 
-	 
-	print(ui.get_child(marker_index).name)
+	var speed_1 = Vector2(0, 400)
+	var speed_2 = Vector2(-400, 0)
+	var rand_marker = [2,13].pick_random()
 	
-	spawner.scene = load("res://Scenes/lazer.tscn")
-	
-	spawner.Spawn(ui.get_child(marker_index).position)
-	
-	var instance = spawner.instance
-	var instance_move_component = instance.get_child(2)
-	
-	instance_move_component.velocity = Vector2(0, 400)
-	
-	if marker_index == 1:
-		instance.rotation_degrees = 90.0 
-		instance_move_component.velocity = Vector2(-400, 0)
+	Spawn_Hazard(load("res://Scenes/lazer.tscn"), rand_marker)
+	Move_Hazard(speed_1, speed_2, rand_marker == 2, 180.0)
