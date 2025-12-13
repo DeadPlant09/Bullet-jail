@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://6rrhr1jx8b8l"]
+
+[ext_resource type="Script" uid="uid://dos5auua5ytwn" path="res://Scripts/dollar.gd" id="1_2tota"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ih8xy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bq7s"]
+size = Vector2(41, 18)
+
+[node name="Hundred Dollar" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2tota")
+amount = 100
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 0.14117648, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 21.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_ih8xy")
+
+[node name="amount label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_2bq7s")
+
+[connection signal="body_entered" from="." to="." method="Dollar_Collected"]

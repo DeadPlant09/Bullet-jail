@@ -52,6 +52,15 @@ position = Vector2(-63, 591)
 [node name="marker13" type="Marker2D" parent="UI"]
 position = Vector2(356, -39)
 
+[node name="marker14" type="Marker2D" parent="UI"]
+position = Vector2(355, 321)
+
+[node name="marker15" type="Marker2D" parent="UI"]
+position = Vector2(140, 156)
+
+[node name="marker16" type="Marker2D" parent="UI"]
+position = Vector2(543, 496)
+
 [node name="Start Menu" parent="UI" instance=ExtResource("1_j0p05")]
 z_index = 3
 start_game = false

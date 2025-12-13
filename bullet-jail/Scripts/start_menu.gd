@@ -4,10 +4,11 @@ extends Control
 @export var start_game: bool
 
 # variables
-@onready var label: Label = $VBoxContainer/Label
+@onready var title_label: Label = $VBoxContainer/title_label
 @onready var start_button: Button = $VBoxContainer/start
 @onready var retry_button: Button = $VBoxContainer/retry
 @onready var quit_button: Button = $VBoxContainer/quit
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # functons
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _ready() -> void:
 	quit_button.button_up.connect(quit)
 	
 	Global.Game_Over.connect(try_again)
+	Global.Deleted_Save.connect(Show_Deleted_Message)
 
 
 func start():
@@ -38,8 +40,11 @@ func quit():
 
 
 func try_again():
-	label.text = "GAME OVER"
+	title_label.text = "GAME OVER"
 	start_button.hide()
 	retry_button.show()
 	show()
 	retry_button.grab_focus()
+
+func Show_Deleted_Message():
+	animation_player.play("show deleted message")

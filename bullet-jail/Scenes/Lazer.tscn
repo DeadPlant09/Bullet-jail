@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="1_qbnyk"]
 [ext_resource type="Script" uid="uid://dqo444xi3x2v3" path="res://Scripts/drop_chance.gd" id="2_0rbwp"]
 [ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="3_cpxkj"]
-[ext_resource type="PackedScene" uid="uid://cu3rb72by3owe" path="res://Scenes/one_dollar.tscn" id="4_353kx"]
+[ext_resource type="PackedScene" uid="uid://6rrhr1jx8b8l" path="res://Scenes/one_hundred_dollar.tscn" id="4_r0s17"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="5_e7j1b"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qbnyk"]
@@ -46,14 +46,14 @@ metadata/_custom_type_script = "uid://dimbc2frc2j7"
 
 [node name="Drop_Chance" type="Node2D" parent="." node_paths=PackedStringArray("spawner", "move_node")]
 script = ExtResource("2_0rbwp")
-drop_range = 80
+drop_range = 5
 spawner = NodePath("../spawner_component 2")
 move_node = NodePath("../move_component")
 metadata/_custom_type_script = "uid://dqo444xi3x2v3"
 
 [node name="spawner_component 2" type="Node" parent="."]
 script = ExtResource("3_cpxkj")
-scene = ExtResource("4_353kx")
+scene = ExtResource("4_r0s17")
 metadata/_custom_type_script = "uid://ciyyb65f016pr"
 
 [node name="off_screen_remover" type="VisibleOnScreenNotifier2D" parent="."]

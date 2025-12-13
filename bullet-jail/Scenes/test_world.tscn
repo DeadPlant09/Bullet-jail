@@ -1,21 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cik8v7oyc6qr3"]
+[gd_scene load_steps=6 format=3 uid="uid://cik8v7oyc6qr3"]
 
 [ext_resource type="PackedScene" uid="uid://bql3k7fohk0v5" path="res://Scenes/Hanbox.tscn" id="1_au00k"]
 [ext_resource type="PackedScene" uid="uid://dj14rgikpn08q" path="res://Scenes/car_(normal).tscn" id="2_707cn"]
 [ext_resource type="PackedScene" uid="uid://ct4m8tpfkjv6y" path="res://Scenes/dash_juice.tscn" id="3_707cn"]
 [ext_resource type="PackedScene" uid="uid://cu3rb72by3owe" path="res://Scenes/one_dollar.tscn" id="4_mq1bj"]
+[ext_resource type="PackedScene" uid="uid://ectbbi5d4fde" path="res://Scenes/cage.tscn" id="5_iwv7r"]
 
 [node name="test world" type="Node2D"]
 
 [node name="Hanbox (player)" parent="." instance=ExtResource("1_au00k")]
-position = Vector2(74, 133)
+position = Vector2(461, 407)
 
 [node name="car (normal)" parent="." instance=ExtResource("2_707cn")]
 position = Vector2(416, 124)
 rotation = 1.5707964
 
 [node name="Dash Juice" parent="." instance=ExtResource("3_707cn")]
-position = Vector2(234, 177)
+position = Vector2(404, 430)
 
 [node name="One Dollar" parent="." instance=ExtResource("4_mq1bj")]
 position = Vector2(110, 69)
+
+[node name="cage" parent="." instance=ExtResource("5_iwv7r")]
+position = Vector2(450, 432)

@@ -5,7 +5,7 @@ func _ready() -> void:
 	Global.Unlock_Dash.connect(Unlocking_Dash)
 
 func _on_screen_exited() -> void:
-	queue_free()
+	get_parent().queue_free()
 
 func Unlocking_Dash():
-	queue_free()
+	get_parent().queue_free()

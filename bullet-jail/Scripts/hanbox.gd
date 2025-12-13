@@ -13,7 +13,6 @@ const max_hp = 3
 var hp:int:
 	set(value):
 		hp = value
-		print(hp)
 		emit_signal("update_health_bar", hp)
 var speed = 300
 var dashed = false
@@ -37,10 +36,11 @@ func Start():
 
 
 func _input(_event: InputEvent) -> void:
-	var dash_button_pressed = Input.is_action_just_pressed("ui_accept") 
+	var dash_button_pressed = Global.unlocked_dash and Input.is_action_just_pressed("ui_accept") 
+	
 	var is_moving = not velocity == Vector2.ZERO and not hp == 0
 	
-	if dash_button_pressed and Global.unlocked_dash and is_moving:
+	if dash_button_pressed and is_moving:
 		Dash()
 
 

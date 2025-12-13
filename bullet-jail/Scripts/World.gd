@@ -1,7 +1,7 @@
 extends Node2D
 
 # export variables
-@export var start_spawn = true
+@export var start_spawn:bool = true
 
 # variables
 @onready var ui: Node = $UI
@@ -24,13 +24,15 @@ func _ready() -> void:
 	health_label.text = "HP: " + str(hanbox.hp)
 	
 	# start timers
-	car_timer.start(1.0  / (0.5 - (Global.money * 0.01))) # decreces as money grows
-	drifter_timer.start(1.5  / (0.5 - (Global.money * 0.01)))
-	shooter_timer.start(2.0  / (0.5 - (Global.money * 0.01)))
-	lazer_timer.start(4.0  / (0.5 - (Global.money * 0.01)))
+	car_timer.start(1.25  / (0.5 + (Global.money * 0.01))) # decreces as money grows
+	drifter_timer.start(2.5  / (0.5 + (Global.money * 0.01)))
+	shooter_timer.start(3.0  / (0.5 + (Global.money * 0.01)))
+	lazer_timer.start(5.0  / (0.5 + (Global.money * 0.01)))
+	cage_timer.start(10.0  / (0.5 + (Global.money * 0.01)))
 	
 	# UI updates
 	Global.Collected_Money.connect(Update_Score)
+	Global.Game_Over.connect(Show_High_Score)
 	hanbox.update_health_bar.connect(Update_Health_Bar)
 	
 	# Hazard Spawn
@@ -39,6 +41,7 @@ func _ready() -> void:
 	drifter_timer.timeout.connect(Spawn_Drifiter_Car)
 	shooter_timer.timeout.connect(Spawn_Shooter_Car)
 	lazer_timer.timeout.connect(Spawn_Lazer)
+	cage_timer.timeout.connect(Spawn_Cage)
 
 
 func Update_Health_Bar(health:int):
@@ -53,21 +56,19 @@ func Update_Score():
 	score_label.text = str(Global.money) + " HIGH SCORE!!!"
 	score_label.modulate = Color.YELLOW
 
+func Show_High_Score():
+	score_label.text = "HIGH SCORE: " + str(Global.high_score)
+	score_label.modulate = Color.GREEN
 
-func Update_Spawning():
-	if Global.money >= 101: return
-	elif Global.money >= 55: bomb_timer.start(3.5  / (0.5 - (Global.money * 0.01)))
-	elif Global.money >= 100: cage_timer.start(4.0  / (0.5 - (Global.money * 0.01)))
 
 func Get_Dash():
 	start_spawn = false
 	spawner.scene = load("res://Scenes/dash_juice.tscn")
 	spawner.call_deferred("Spawn", Vector2(320, 360)) # to add a node after money is deleted (not at the same time)
 	
-	await Global.Unlocked_Dash
+	await Global.Unlocked_Dash # wait for play to collect dash juic
 	
 	dash_label.show()
-	Global.unlocked_dash = true
 	start_spawn = true
 
 func _input(_event: InputEvent) -> void:
@@ -106,7 +107,6 @@ func Spawn_Normal_Car():
 	
 	Move_Hazard(speed_1, speed_2, Global.in_range(spawn_index, 3, 5))
 
-
 func Spawn_Drifiter_Car():
 	if not start_spawn or not Global.game_runing: return
 	if not Global.money >= 10: return
@@ -126,12 +126,12 @@ func Spawn_Shooter_Car():
 	if not start_spawn or not Global.game_runing: return
 	if not Global.money >= 20: return
 	
-	var speed_1 = Vector2(-330, 0)
-	var speed_2 = Vector2(350, 0)
+	var speed_1 = Vector2(330, 0)
+	var speed_2 = Vector2(-350, 0)
 	var rand_marker = [1,12].pick_random()
 	
 	Spawn_Hazard(load("res://Scenes/car_(shooter).tscn"), rand_marker)
-	Move_Hazard(speed_1, speed_2, rand_marker == 12)
+	Move_Hazard(speed_1, speed_2, rand_marker == 1, -360.0) # glitched when seting angles
 	
 	var hazard = spawner.instance
 	
@@ -146,4 +146,16 @@ func Spawn_Lazer():
 	var rand_marker = [2,13].pick_random()
 	
 	Spawn_Hazard(load("res://Scenes/lazer.tscn"), rand_marker)
-	Move_Hazard(speed_1, speed_2, rand_marker == 2, 180.0)
+	Move_Hazard(speed_1, speed_2, rand_marker == 2)
+
+func Spawn_Cage():
+	if not start_spawn or not Global.game_runing: return
+	if not Global.money >= 50: return
+	
+	var rand_marker = randi_range(14, 16)
+	
+	Spawn_Hazard(load("res://Scenes/cage.tscn"), rand_marker)
+	
+	var hazard = spawner.instance
+	
+	hazard.Drop_Cage() # to change direction AFTER you have movement
