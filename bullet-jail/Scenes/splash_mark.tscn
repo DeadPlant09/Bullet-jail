@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcx6kcbr24rho"]
+
+[ext_resource type="Texture2D" uid="uid://8vbfsqxqob8t" path="res://Sprites/DeadPlant Splash mark.svg" id="1_wwjs4"]
+[ext_resource type="Script" uid="uid://w4r3icu112uq" path="res://Scripts/splash_mark.gd" id="2_fa3qy"]
+
+[sub_resource type="Animation" id="Animation_ghbrn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lc4ye"]
+resource_name = "fade in and out"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.5),
+"transitions": PackedFloat32Array(1, 2.3784142, 1.2745616),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_27dg2"]
+_data = {
+&"RESET": SubResource("Animation_ghbrn"),
+&"fade in and out": SubResource("Animation_lc4ye")
+}
+
+[node name="splash mark" type="Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_wwjs4")
+centered = false
+script = ExtResource("2_fa3qy")
+
+[node name="backround" type="Sprite2D" parent="."]
+position = Vector2(119, 0)
+texture = ExtResource("1_wwjs4")
+centered = false
+
+[node name="text" type="Label" parent="."]
+offset_left = 115.0
+offset_top = 439.0
+offset_right = 596.0
+offset_bottom = 571.0
+theme_override_colors/font_color = Color(0, 0.7993778, 0.17684463, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 96
+text = "DeadPlant"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_27dg2")
+}

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvujgrlrsggpr"]
+[gd_scene load_steps=5 format=3 uid="uid://bvujgrlrsggpr"]
 
 [ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="1_oduel"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="2_ycag2"]
+[ext_resource type="Texture2D" uid="uid://b0ynuon44rb1j" path="res://Sprites/bullet.svg" id="3_ycag2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_at5ip"]
-size = Vector2(14, 34)
+size = Vector2(16, 25)
 
 [node name="bullet" type="Node2D" node_paths=PackedStringArray("moving")]
 script = ExtResource("1_oduel")
@@ -16,23 +17,15 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_at5ip")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="off_screen_remover" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-8, -16, 16, 36)
+rect = Rect2(-8, -13, 16, 26)
 script = ExtResource("2_ycag2")
 metadata/_custom_type_script = "uid://bs2jt5a0qqae7"
+
+[node name="Bullet" type="Sprite2D" parent="."]
+position = Vector2(0, 7.1054274e-15)
+scale = Vector2(0.35677084, 0.425)
+texture = ExtResource("3_ycag2")

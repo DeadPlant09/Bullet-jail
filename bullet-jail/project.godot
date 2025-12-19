@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Bullet jail"
-run/main_scene="uid://bf7ng4ld15f5m"
+config/tags=PackedStringArray("finished", "will_be_updated")
+run/main_scene="uid://bcx6kcbr24rho"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://Sprites/icon.svg"
+config/macos_native_icon="uid://qhnst3ugcqbo"
 
 [autoload]
 

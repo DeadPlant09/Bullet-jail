@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1152 648" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-0.67924,5.17815)">
+        <rect x="0.679" y="-5.178" width="1154.11" height="648.593" style="fill:rgb(84,37,0);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,11.8053,9.33394)">
+        <g transform="matrix(0.66292,-0.196157,0.195554,0.694386,35.9198,175.262)">
+            <path d="M242.315,320.751C240.307,320.779 238.289,320.766 236.261,320.714C234.689,324.641 232.887,328.92 230.821,333.577C216.613,365.612 181.725,385.885 158.475,370.767C134.535,355.201 141.94,331.913 165.994,302.299C163.828,301.15 161.702,299.956 159.62,298.718C159.4,299.037 159.176,299.356 158.948,299.674C146.554,317.018 112.985,345.353 90.039,330.161C68.366,315.812 66.617,295.602 77.363,273.376C83.172,261.36 97.106,250.464 106.966,241.769C98.4,222.693 95.835,201.934 100.863,181.602C114.936,124.694 183.197,92.548 253.201,109.86C323.206,127.173 368.615,187.43 354.541,244.337C348.569,268.485 332.84,288.175 311.361,301.519C311.824,316.573 311.059,338.416 304.479,354.611C294.187,379.94 274.397,392.879 252.46,387.848C225.135,381.582 216.748,360.672 232.852,337.157C236.723,331.503 239.827,325.987 242.315,320.751Z" style="fill:rgb(26,183,0);stroke:black;stroke-width:11.87px;"/>
+        </g>
+        <g transform="matrix(0.69831,-0.299181,0.291874,0.715792,9.76588,168.841)">
+            <g transform="matrix(1.01639,0.205759,-0.205759,1.01639,38.2397,-33.3842)">
+                <g transform="matrix(1,2.77556e-17,-2.77556e-17,1,-270.701,-46.6838)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+                <g transform="matrix(1,2.77556e-17,-2.77556e-17,1,-249.06,-61.3262)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+                <g transform="matrix(1,2.77556e-17,-2.77556e-17,1,-242.043,-36.3365)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+                <g transform="matrix(0.825689,-0.267631,0.277601,0.856449,-364.023,122.183)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+                <g transform="matrix(0.825689,-0.267631,0.277601,0.856449,-350.218,103.851)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+                <g transform="matrix(0.825689,-0.267631,0.277601,0.856449,-337.487,123.375)">
+                    <ellipse cx="508.26" cy="318.047" rx="10.958" ry="10.939" style="fill:rgb(35,123,0);"/>
+                </g>
+            </g>
+            <g transform="matrix(0.985341,0.170598,-0.160783,0.92865,117.807,-5.00783)">
+                <ellipse cx="95.653" cy="198.273" rx="31.667" ry="30.614" style="fill:rgb(123,50,0);stroke:black;stroke-width:11.26px;"/>
+            </g>
+            <g transform="matrix(0.96446,0.264227,-0.249025,0.908971,213.904,19.9783)">
+                <ellipse cx="95.653" cy="198.273" rx="31.667" ry="30.614" style="fill:rgb(123,50,0);stroke:black;stroke-width:11.23px;"/>
+            </g>
+        </g>
+    </g>
+    <g transform="matrix(2.69419,0,0,2.69419,-1031.4,203.161)">
+        <g transform="matrix(50,0,0,50,746.452,52.5412)">
+        </g>
+        <text x="512.956px" y="52.541px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:50px;fill:rgb(0,255,18);stroke:black;stroke-width:1.86px;stroke-linecap:butt;stroke-miterlimit:2;">DeadPlant</text>
+    </g>
+</svg>

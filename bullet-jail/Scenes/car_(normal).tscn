@@ -1,12 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dj14rgikpn08q"]
 
 [ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="1_6iwtw"]
+[ext_resource type="Texture2D" uid="uid://bjwnxq5kukjda" path="res://Sprites/car.svg" id="1_doqiv"]
 [ext_resource type="Script" uid="uid://dqo444xi3x2v3" path="res://Scripts/drop_chance.gd" id="1_qe1hs"]
 [ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="3_ryc1k"]
 [ext_resource type="PackedScene" uid="uid://cu3rb72by3owe" path="res://Scenes/one_dollar.tscn" id="4_uxwk8"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="5_yjqss"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_5fenx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
 size = Vector2(130, 51)
@@ -14,21 +13,9 @@ size = Vector2(130, 51)
 [node name="car (normal)" type="Node2D"]
 z_index = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.078431375, 0.60784316, 1, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = -25.5
-offset_right = 65.0
-offset_bottom = 25.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_5fenx")
-metadata/_edit_use_anchors_ = true
+[node name="Car" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_doqiv")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

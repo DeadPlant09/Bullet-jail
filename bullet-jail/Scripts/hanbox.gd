@@ -31,7 +31,6 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 
 func Start():
-	$ColorRect.color = Color.SADDLE_BROWN
 	hp = max_hp 
 
 
@@ -77,5 +76,4 @@ func Got_Hit():
 	
 	if not dead: return
 	
-	$ColorRect.color = Color.WHITE
 	Global.Game_Over.emit()

@@ -4,10 +4,11 @@ extends Control
 @export var start_game: bool
 
 # variables
-@onready var title_label: Label = $VBoxContainer/title_label
-@onready var start_button: Button = $VBoxContainer/start
-@onready var retry_button: Button = $VBoxContainer/retry
-@onready var quit_button: Button = $VBoxContainer/quit
+@onready var bullet_jail_title: Sprite2D = $"Bullet Jail Title"
+@onready var game: Label = $"VBoxContainer/Game state label"
+@onready var start_button: BaseButton = $VBoxContainer/start
+@onready var retry_button: BaseButton = $VBoxContainer/retry
+@onready var quit_button: BaseButton = $VBoxContainer/quit
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # functons
@@ -29,6 +30,7 @@ func _ready() -> void:
 
 func start():
 	Global.game_runing = true
+	bullet_jail_title.hide()
 	hide()
 
 func restart():
@@ -40,7 +42,7 @@ func quit():
 
 
 func try_again():
-	title_label.text = "GAME OVER"
+	game.text = "GAME OVER"
 	start_button.hide()
 	retry_button.show()
 	show()

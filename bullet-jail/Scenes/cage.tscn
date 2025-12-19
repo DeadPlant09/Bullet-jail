@@ -1,15 +1,65 @@
 [gd_scene load_steps=11 format=3 uid="uid://ectbbi5d4fde"]
 
 [ext_resource type="Script" uid="uid://78g6h87kya8x" path="res://Scripts/cage.gd" id="1_qgbmn"]
+[ext_resource type="Texture2D" uid="uid://cvm5xd8y0q7tm" path="res://Sprites/cage.svg" id="2_6npmn"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="5_fujpa"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_iyqmk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyqmk"]
 size = Vector2(258, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgbmn"]
 size = Vector2(8, 192)
+
+[sub_resource type="Animation" id="Animation_25q5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite/Chain:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite/Chain:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_murxq"]
 resource_name = "cage_incoming"
@@ -53,45 +103,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_25q5s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sprite/Chain:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_qgbmn"]
 resource_name = "drop_cage"
 length = 0.4
@@ -105,7 +116,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -189,38 +200,15 @@ z_index = 2
 script = ExtResource("1_qgbmn")
 
 [node name="sprite" type="Node2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="sprite"]
-offset_left = -128.0
-offset_top = 79.0
-offset_right = 128.0
-offset_bottom = 89.0
-texture = SubResource("CanvasTexture_iyqmk")
-
-[node name="TextureRect4" type="TextureRect" parent="sprite"]
-offset_left = -128.0
-offset_top = -120.0
-offset_right = 128.0
-offset_bottom = -110.0
-texture = SubResource("CanvasTexture_iyqmk")
-
-[node name="TextureRect2" type="TextureRect" parent="sprite"]
-offset_left = 104.0
-offset_top = -112.0
-offset_right = 113.0
-offset_bottom = 86.0
-texture = SubResource("CanvasTexture_iyqmk")
-
-[node name="TextureRect3" type="TextureRect" parent="sprite"]
-offset_left = -112.0
-offset_top = -112.0
-offset_right = -103.0
-offset_bottom = 86.0
-texture = SubResource("CanvasTexture_iyqmk")
+[node name="Cage" type="Sprite2D" parent="sprite"]
+position = Vector2(1, -14)
+scale = Vector2(1, 0.85)
+texture = ExtResource("2_6npmn")
 
 [node name="Chain" type="Label" parent="sprite"]
 visible = false
+self_modulate = Color(0, 0, 0, 1)
 texture_filter = 2
 offset_left = -9.0
 offset_top = -556.0
@@ -258,6 +246,7 @@ text = "0
 0"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -277,7 +266,7 @@ position = Vector2(1, -115)
 shape = SubResource("RectangleShape2D_iyqmk")
 
 [node name="off_screen_remover" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-65, -26, 131, 52)
+rect = Rect2(-128, -120, 256, 208)
 script = ExtResource("5_fujpa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

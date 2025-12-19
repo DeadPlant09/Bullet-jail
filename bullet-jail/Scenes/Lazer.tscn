@@ -1,40 +1,89 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbql8y5j7igwu"]
+[gd_scene load_steps=11 format=3 uid="uid://bbql8y5j7igwu"]
 
+[ext_resource type="Texture2D" uid="uid://d1o7abih8kxyb" path="res://Sprites/lazar.svg" id="1_0rbwp"]
 [ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="1_qbnyk"]
 [ext_resource type="Script" uid="uid://dqo444xi3x2v3" path="res://Scripts/drop_chance.gd" id="2_0rbwp"]
 [ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="3_cpxkj"]
 [ext_resource type="PackedScene" uid="uid://6rrhr1jx8b8l" path="res://Scenes/one_hundred_dollar.tscn" id="4_r0s17"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="5_e7j1b"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_qbnyk"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
-size = Vector2(608, 42)
+size = Vector2(575, 33)
+
+[sub_resource type="Animation" id="Animation_0rbwp"]
+resource_name = "eletricity"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cpxkj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_353kx"]
+_data = {
+&"RESET": SubResource("Animation_cpxkj"),
+&"eletricity": SubResource("Animation_0rbwp")
+}
 
 [node name="Lazer" type="Node2D"]
 z_index = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.99215686, 0.96862745, 0, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -288.0
-offset_top = -24.0
-offset_right = 336.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_qbnyk")
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_0rbwp")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(24, 0)
+position = Vector2(-0.5, 6.5)
 shape = SubResource("RectangleShape2D_6iwtw")
 debug_color = Color(1, 0.015686275, 0.02745098, 0.6627451)
 
@@ -58,7 +107,13 @@ metadata/_custom_type_script = "uid://ciyyb65f016pr"
 
 [node name="off_screen_remover" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-240, 0)
-rect = Rect2(-48, -26, 624, 52)
+rect = Rect2(-109, -26, 693, 52)
 script = ExtResource("5_e7j1b")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_353kx")
+}
+autoplay = "eletricity"
 
 [connection signal="screen_exited" from="off_screen_remover" to="off_screen_remover" method="_on_screen_exited"]

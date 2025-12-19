@@ -4,36 +4,21 @@
 [ext_resource type="Script" uid="uid://dimbc2frc2j7" path="res://Scripts/move_component.gd" id="2_h0j7l"]
 [ext_resource type="Script" uid="uid://dqo444xi3x2v3" path="res://Scripts/drop_chance.gd" id="2_h546d"]
 [ext_resource type="Script" uid="uid://bs2jt5a0qqae7" path="res://Scripts/off_screen_remover.gd" id="2_mrvly"]
+[ext_resource type="Texture2D" uid="uid://ehk5et2q3xsf" path="res://Sprites/drifter.svg" id="2_nsxsr"]
 [ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="3_8828n"]
 [ext_resource type="PackedScene" uid="uid://dmdq4jldj4p72" path="res://Scenes/five_dollar.tscn" id="4_8828n"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_5fenx"]
+[ext_resource type="Texture2D" uid="uid://bo56x1s7r0s2f" path="res://Sprites/turner.svg" id="8_63wmj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
 size = Vector2(130, 51)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8828n"]
 
 [node name="car (drifter)" type="Node2D"]
 z_index = 2
 script = ExtResource("1_lkf4j")
 
-[node name="sprite" type="TextureRect" parent="."]
-modulate = Color(0.8772926, 0.4666822, 3.85046e-07, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = -25.5
-offset_right = 65.0
-offset_bottom = 25.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(65, 25)
-texture = SubResource("CanvasTexture_5fenx")
-metadata/_edit_use_anchors_ = true
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nsxsr")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -67,36 +52,6 @@ metadata/_custom_type_script = "uid://bs2jt5a0qqae7"
 
 [node name="Turnner" type="Node2D" parent="."]
 
-[node name="TextureRect2" type="TextureRect" parent="Turnner"]
-modulate = Color(0, 0, 0, 1)
-offset_left = -20.0
-offset_top = -5.0
-offset_right = 20.0
-offset_bottom = 7.0
-texture = SubResource("CanvasTexture_8828n")
-
-[node name="TextureRect3" type="TextureRect" parent="Turnner"]
-modulate = Color(0, 0, 0, 1)
-offset_left = 14.0
-offset_top = -14.0
-offset_right = 23.0
-offset_bottom = 14.0
-texture = SubResource("CanvasTexture_8828n")
-
-[node name="TextureRect4" type="TextureRect" parent="Turnner"]
-modulate = Color(0, 0, 0, 1)
-offset_left = 10.151315
-offset_top = -9.151313
-offset_right = 23.290752
-offset_bottom = 17.564365
-rotation = -0.7853982
-texture = SubResource("CanvasTexture_8828n")
-
-[node name="TextureRect5" type="TextureRect" parent="Turnner"]
-modulate = Color(0, 0, 0, 1)
-offset_left = 29.921051
-offset_top = -8.052631
-offset_right = 42.33477
-offset_bottom = 18.663044
-rotation = 0.7853982
-texture = SubResource("CanvasTexture_8828n")
+[node name="sprite" type="Sprite2D" parent="Turnner"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_63wmj")

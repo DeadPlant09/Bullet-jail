@@ -21,7 +21,6 @@ var high_score:int
 var unlocked_dash
 
 func _ready() -> void:
-	money = 49
 	Load()
 	Game_Over.connect(game_over)
 
