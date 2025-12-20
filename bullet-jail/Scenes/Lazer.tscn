@@ -10,6 +10,33 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iwtw"]
 size = Vector2(575, 33)
 
+[sub_resource type="Animation" id="Animation_cpxkj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_0rbwp"]
 resource_name = "eletricity"
 loop_mode = 1
@@ -38,33 +65,6 @@ tracks/1/keys = {
 "values": [false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_cpxkj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:flip_v")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_353kx"]
 _data = {
 &"RESET": SubResource("Animation_cpxkj"),
@@ -89,7 +89,6 @@ debug_color = Color(1, 0.015686275, 0.02745098, 0.6627451)
 
 [node name="move_component" type="Node2D" parent="." node_paths=PackedStringArray("moving")]
 script = ExtResource("1_qbnyk")
-velocity = Vector2(0, 400)
 moving = NodePath("..")
 metadata/_custom_type_script = "uid://dimbc2frc2j7"
 
