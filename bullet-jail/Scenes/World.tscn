@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf7ng4ld15f5m"]
+[gd_scene load_steps=8 format=3 uid="uid://bf7ng4ld15f5m"]
 
 [ext_resource type="PackedScene" uid="uid://bql3k7fohk0v5" path="res://Scenes/Hanbox.tscn" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://y3rsvhrvprfx" path="res://Scripts/World.gd" id="1_gjpho"]
 [ext_resource type="PackedScene" uid="uid://rwtb7ne1garj" path="res://Scenes/start_menu.tscn" id="1_j0p05"]
 [ext_resource type="Script" uid="uid://ciyyb65f016pr" path="res://Scripts/spawner.gd" id="3_p70al"]
 [ext_resource type="Texture2D" uid="uid://dr2xb1l100ccr" path="res://Sprites/Bullet Jail backround.svg" id="5_p70al"]
+[ext_resource type="Script" uid="uid://cmqxqg4ledpda" path="res://Scripts/pause_component.gd" id="6_45d1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cjrv"]
 size = Vector2(765, 78)
@@ -163,3 +164,6 @@ shape = SubResource("RectangleShape2D_5cjrv")
 position = Vector2(360, 324)
 rotation = 1.5707964
 texture = ExtResource("5_p70al")
+
+[node name="pause_component" type="Node2D" parent="."]
+script = ExtResource("6_45d1s")

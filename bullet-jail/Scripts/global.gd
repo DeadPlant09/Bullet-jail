@@ -2,6 +2,7 @@ extends Node
 
 # signals
 signal Game_Over
+signal Pause
 signal Collected_Money
 signal Unlock_Dash
 signal Unlocked_Dash

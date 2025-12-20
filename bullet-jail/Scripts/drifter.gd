@@ -3,7 +3,7 @@ class_name Turnner
 
 @onready var move: move_component = $move_component
 @onready var turnner: Node2D = $Turnner
-@onready var sprite: TextureRect = $sprite
+@onready var sprite: Sprite2D = $sprite
 
 var random_dir = randi_range(1,2)
 

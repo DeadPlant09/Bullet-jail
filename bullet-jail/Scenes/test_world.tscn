@@ -9,7 +9,7 @@
 [node name="test world" type="Node2D"]
 
 [node name="Hanbox (player)" parent="." instance=ExtResource("1_au00k")]
-position = Vector2(461, 407)
+position = Vector2(100, 352)
 
 [node name="car (normal)" parent="." instance=ExtResource("2_707cn")]
 position = Vector2(416, 124)
@@ -22,4 +22,4 @@ position = Vector2(404, 430)
 position = Vector2(110, 69)
 
 [node name="cage" parent="." instance=ExtResource("5_iwv7r")]
-position = Vector2(450, 432)
+position = Vector2(598, 444)

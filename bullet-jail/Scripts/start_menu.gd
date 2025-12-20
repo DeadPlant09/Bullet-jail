@@ -20,33 +20,45 @@ func _ready() -> void:
 	
 	retry_button.hide()
 	
-	start_button.button_up.connect(start)
-	retry_button.button_up.connect(restart)
-	quit_button.button_up.connect(quit)
+	start_button.button_up.connect(Start)
+	retry_button.button_up.connect(Restart)
+	quit_button.button_up.connect(Quit)
 	
-	Global.Game_Over.connect(try_again)
+	Global.Game_Over.connect(Try_again)
+	Global.Pause.connect(Show_Pause)
 	Global.Deleted_Save.connect(Show_Deleted_Message)
 
 
-func start():
+func Start():
 	Global.game_runing = true
 	bullet_jail_title.hide()
 	hide()
 
-func restart():
+func Restart():
 	Global.game_runing = true # so it start up automaticlly
 	get_tree().reload_current_scene()
 
-func quit():
+func Quit():
 	get_tree().quit()
 
 
-func try_again():
+func Try_again():
 	game.text = "GAME OVER"
 	start_button.hide()
 	retry_button.show()
 	show()
 	retry_button.grab_focus()
+
+func Show_Pause():
+	if get_tree().paused:
+		game.text = "PAUSED"
+		start_button.hide()
+		retry_button.hide()
+		quit_button.hide()
+		show()
+	
+	elif not get_tree().paused:
+		hide()
 
 func Show_Deleted_Message():
 	animation_player.play("show deleted message")

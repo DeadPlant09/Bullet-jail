@@ -16,6 +16,7 @@ z_index = 2
 [node name="Car" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_doqiv")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -32,7 +33,7 @@ metadata/_custom_type_script = "uid://dimbc2frc2j7"
 
 [node name="Drop_Chance" type="Node2D" parent="." node_paths=PackedStringArray("spawner", "move_node")]
 script = ExtResource("1_qe1hs")
-drop_range = 55
+drop_range = 75
 spawner = NodePath("../spawner_component 2")
 move_node = NodePath("../move_component")
 metadata/_custom_type_script = "uid://dqo444xi3x2v3"

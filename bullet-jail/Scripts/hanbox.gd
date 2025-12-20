@@ -7,7 +7,8 @@ signal update_health_bar(health: int)
 @export var debug:bool
 
 # variables
-@onready var invincablity_animation: AnimationPlayer = $"Invincablity Animation"
+@onready var animations: AnimationPlayer = $Animation
+@onready var dash_paricles: GPUParticles2D = $paricles
 @onready var invincablity_timer: Timer = $"Invincablity Timer"
 const max_hp = 3
 var hp:int:
@@ -48,12 +49,14 @@ func Dash():
 	
 	speed *= 2.2
 	invincablity_timer.start(0.25)
-	invincablity_animation.play("Dash")
+	animations.play("Dash")
+	dash_paricles.emitting = true
 	dashed = true
 	
 	await invincablity_timer.timeout
 	
-	invincablity_animation.play("RESET")
+	dash_paricles.emitting = false
+	animations.play("RESET")
 	speed = 300
 	
 	var dash_cooldown = get_tree().create_timer(0.35).timeout
@@ -70,7 +73,7 @@ func Got_Hit():
 	
 	hp -= 1
 	invincablity_timer.start(0.7)
-	invincablity_animation.play("blinking")
+	animations.play("blinking")
 	
 	var dead = hp == 0
 	

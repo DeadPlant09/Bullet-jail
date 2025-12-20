@@ -19,6 +19,7 @@ script = ExtResource("1_lkf4j")
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nsxsr")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

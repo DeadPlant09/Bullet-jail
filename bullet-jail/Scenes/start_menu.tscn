@@ -44,6 +44,7 @@ _data = {
 }
 
 [node name="Start Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,6 +66,7 @@ alignment = 1
 
 [node name="Game state label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 
@@ -119,6 +121,7 @@ layout_mode = 0
 offset_top = 536.0
 offset_right = 720.0
 offset_bottom = 581.0
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 32
 text = "Save removed, high_score: Reset."
 horizontal_alignment = 1
