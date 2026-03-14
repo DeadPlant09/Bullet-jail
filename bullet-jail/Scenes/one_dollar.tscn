@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu3rb72by3owe"]
 
 [ext_resource type="Script" uid="uid://dos5auua5ytwn" path="res://Scripts/dollar.gd" id="1_2bq7s"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ih8xy"]
+[ext_resource type="Texture2D" uid="uid://qq7egl182jaa" path="res://Sprites/Money.svg" id="2_lob78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bq7s"]
 size = Vector2(41, 18)
@@ -13,20 +12,10 @@ collision_mask = 2
 script = ExtResource("1_2bq7s")
 amount = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0, 1, 0, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 21.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_ih8xy")
+[node name="image" type="Sprite2D" parent="."]
+position = Vector2(1.0000002, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_lob78")
 
 [node name="amount label" type="Label" parent="."]
 anchors_preset = 8

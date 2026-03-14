@@ -31,7 +31,6 @@ func _ready() -> void:
 
 func Start():
 	Global.game_runing = true
-	bullet_jail_title.hide()
 	hide()
 
 func Restart():
@@ -41,11 +40,11 @@ func Restart():
 func Quit():
 	get_tree().quit()
 
-
 func Try_again():
-	game.text = "GAME OVER"
+	game.text = ""
 	start_button.hide()
 	retry_button.show()
+	quit_button.show()
 	show()
 	retry_button.grab_focus()
 

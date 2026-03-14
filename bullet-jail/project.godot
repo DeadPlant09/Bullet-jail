@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bullet jail"
-config/tags=PackedStringArray("finished", "will_be_updated")
+config/tags=PackedStringArray("finished", "gamejam")
 run/main_scene="uid://bcx6kcbr24rho"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://qhnst3ugcqbo"
@@ -25,6 +25,7 @@ Global="*res://Scripts/global.gd"
 
 window/size/viewport_width=720
 window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [input]
 

@@ -69,7 +69,7 @@ func Got_Hit():
 	
 	var invincablity_on = not invincablity_timer.is_stopped()
 	
-	if invincablity_on: return
+	if invincablity_on or hp < 0: return
 	
 	hp -= 1
 	invincablity_timer.start(0.7)

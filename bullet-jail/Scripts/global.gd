@@ -45,6 +45,7 @@ func in_range(variable:int, greater_than:int, less_than:int)  -> bool:
 	return true
 
 func game_over():
+	unlocked_dash = false
 	game_runing = false
 	Save()
 

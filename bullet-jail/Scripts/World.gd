@@ -53,7 +53,7 @@ func Update_Score():
 	
 	if Global.high_score >= Global.money: return
 	
-	score_label.text = str(Global.money) + " HIGH SCORE!!!"
+	score_label.text = str(Global.money)
 	score_label.modulate = Color.YELLOW
 
 func Show_High_Score():
